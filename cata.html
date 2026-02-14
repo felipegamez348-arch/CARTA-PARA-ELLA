@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para Candy ❤️</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    background: radial-gradient(circle at bottom, #1a0033, #000814);
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family: 'Courier New', monospace;
+    color:white;
+}
+
+/* Estrellas de fondo */
+body::before{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:url("https://www.transparenttextures.com/patterns/stardust.png");
+    opacity:0.4;
+}
+
+/* Sobre */
+#sobre{
+    font-size:90px;
+    cursor:pointer;
+    transition:0.4s;
+    z-index:2;
+}
+
+#sobre:hover{
+    transform:scale(1.2);
+}
+
+/* Contenido */
+#contenido{
+    display:none;
+    text-align:center;
+    z-index:2;
+}
+
+/* Árbol */
+.arbol{
+    font-size:120px;
+    animation: latido 2s infinite;
+}
+
+@keyframes latido{
+    50%{ transform:scale(1.05); }
+}
+
+/* Nombre brillante */
+.nombre{
+    font-size:28px;
+    font-weight:bold;
+    color:#ff66cc;
+    text-shadow:0 0 10px #ff66cc, 0 0 20px #ff1493;
+}
+
+/* Texto */
+.texto{
+    margin-top:20px;
+    max-width:600px;
+    font-size:20px;
+    overflow:hidden;
+    border-right:2px solid white;
+    animation: escribir 6s steps(120) forwards, cursor .6s infinite;
+}
+
+@keyframes escribir{
+    from{ clip-path: inset(0 100% 0 0); }
+    to{ clip-path: inset(0 0 0 0); }
+}
+
+@keyframes cursor{
+    50%{ border-color:transparent; }
+}
+
+/* Corazones flotando */
+.corazon{
+    position:absolute;
+    color:#ff4d88;
+    animation: flotar 7s linear infinite;
+}
+
+@keyframes flotar{
+    from{
+        transform: translateY(100vh) scale(0.8);
+        opacity:1;
+    }
+    to{
+        transform: translateY(-10vh) scale(1.2);
+        opacity:0;
+    }
+}
+
+/* Estrellas fugaces */
+.estrella{
+    position:absolute;
+    width:3px;
+    height:120px;
+    background:linear-gradient(white, transparent);
+    transform:rotate(45deg);
+    animation: caer 2s linear forwards;
+}
+
+@keyframes caer{
+    from{
+        transform:translate(-200px,-200px) rotate(45deg);
+        opacity:1;
+    }
+    to{
+        transform:translate(100vw,100vh) rotate(45deg);
+        opacity:0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div id="sobre">💌</div>
+
+<div id="contenido">
+    <div class="arbol">🌳❤️</div>
+    <div class="texto">
+        Gracias <span class="nombre">Candy</span>,  
+        eres la mejor desde que llegaste a mi vida.  
+        Iluminas mis días como las estrellas iluminan el cielo ✨  
+        y mi corazón late más fuerte cada vez que pienso en ti ❤️
+    </div>
+</div>
+
+<script>
+const sobre = document.getElementById("sobre");
+const contenido = document.getElementById("contenido");
+
+sobre.addEventListener("click", () => {
+    sobre.style.display = "none";
+    contenido.style.display = "block";
+});
+
+/* Corazones */
+setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "corazon";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.fontSize = (20 + Math.random()*40) + "px";
+    document.body.appendChild(heart);
+    setTimeout(()=> heart.remove(), 7000);
+}, 900);
+
+/* Estrellas fugaces */
+setInterval(() => {
+    const star = document.createElement("div");
+    star.className = "estrella";
+    star.style.left = Math.random()*100 + "vw";
+    star.style.top = "0px";
+    document.body.appendChild(star);
+    setTimeout(()=> star.remove(), 2000);
+}, 3000);
+</script>
+
+</body>
+</html>
