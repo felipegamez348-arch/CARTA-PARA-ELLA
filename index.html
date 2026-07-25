@@ -13,131 +13,220 @@
     box-sizing:border-box;
 }
 
+html{
+    scroll-behavior:smooth;
+}
+
 body{
+    min-height:100vh;
     display:flex;
     justify-content:center;
-    align-items:center;
-    min-height:100vh;
-    overflow:hidden;
+    align-items:flex-start;
+    overflow-x:hidden;
+    overflow-y:auto;
+    padding:40px 0;
     font-family:'Segoe UI',sans-serif;
     background:radial-gradient(circle at bottom,#1d0036,#000814,#000);
     color:white;
 }
 
-/* Fondo */
+/* Fondo de estrellas */
+
 body::before{
     content:"";
-    position:absolute;
+    position:fixed;
     inset:0;
     background:url("https://www.transparenttextures.com/patterns/stardust.png");
-    opacity:.45;
+    opacity:.4;
+    z-index:-2;
+}
+
+/* Luna */
+
+body::after{
+    content:"🌙";
+    position:fixed;
+    top:30px;
+    right:40px;
+    font-size:70px;
+    filter:drop-shadow(0 0 20px white);
+    animation:luna 5s ease-in-out infinite;
+    z-index:-1;
+}
+
+@keyframes luna{
+    50%{
+        transform:translateY(-10px);
+    }
 }
 
 /* Sobre */
 
 #sobre{
-    font-size:120px;
+    font-size:130px;
     cursor:pointer;
     animation:latido 2s infinite;
     transition:.4s;
-    z-index:5;
+    margin-top:150px;
 }
 
 #sobre:hover{
-    transform:scale(1.2);
+    transform:scale(1.15);
 }
 
 @keyframes latido{
-    50%{
-        transform:scale(1.08);
-    }
+
+50%{
+transform:scale(1.08);
+}
+
 }
 
 /* Carta */
 
 #contenido{
-    display:none;
-    position:relative;
-    width:90%;
-    max-width:900px;
-    padding:40px;
-    border-radius:25px;
-    background:rgba(255,255,255,.08);
-    backdrop-filter:blur(12px);
-    border:1px solid rgba(255,255,255,.15);
-    box-shadow:0 0 40px rgba(255,105,180,.5);
-    text-align:center;
-    animation:aparecer 2s;
-    z-index:2;
+
+display:none;
+
+width:90%;
+max-width:900px;
+
+padding:40px;
+
+margin-bottom:40px;
+
+border-radius:25px;
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(15px);
+
+border:1px solid rgba(255,255,255,.15);
+
+box-shadow:
+0 0 25px rgba(255,20,147,.4),
+0 0 60px rgba(255,105,180,.25);
+
+animation:aparecer 1.5s;
+
+max-height:90vh;
+
+overflow-y:auto;
+
 }
 
 @keyframes aparecer{
-    from{
-        opacity:0;
-        transform:scale(.7);
-    }
-    to{
-        opacity:1;
-        transform:scale(1);
-    }
+
+from{
+
+opacity:0;
+
+transform:translateY(40px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+#contenido::-webkit-scrollbar{
+
+width:8px;
+
+}
+
+#contenido::-webkit-scrollbar-thumb{
+
+background:#ff1493;
+
+border-radius:20px;
+
 }
 
 .titulo{
 
-    font-size:42px;
-    color:gold;
-    margin-bottom:10px;
+text-align:center;
 
-    text-shadow:
-    0 0 15px gold,
-    0 0 30px hotpink;
+font-size:45px;
 
-    animation:brillo 2s infinite alternate;
+color:gold;
+
+text-shadow:
+0 0 15px gold,
+0 0 35px deeppink;
+
+animation:brillo 2s infinite alternate;
+
 }
 
 @keyframes brillo{
 
 from{
+
 text-shadow:0 0 10px gold;
+
 }
 
 to{
-text-shadow:0 0 20px gold,
+
+text-shadow:
+0 0 20px gold,
 0 0 45px deeppink;
+
 }
 
 }
 
 .subtitulo{
-margin-bottom:25px;
-font-size:18px;
+
+text-align:center;
+
+margin:15px 0 30px;
+
 color:#ddd;
+
+font-size:19px;
+
 }
 
 .nombre{
 
-font-size:34px;
+color:#ff66cc;
+
+font-size:35px;
+
 font-weight:bold;
-color:#ff6fcf;
 
 text-shadow:
+
 0 0 10px #ff66cc,
+
 0 0 25px deeppink,
+
 0 0 50px deeppink;
 
 }
 
 .texto{
 
-font-size:21px;
-line-height:1.8;
+font-size:22px;
+
+line-height:2;
+
+text-align:justify;
 
 overflow:hidden;
 
 border-right:3px solid white;
 
 animation:
-escribir 16s steps(450) forwards,
+escribir 18s steps(600) forwards,
 cursor .7s infinite;
 
 }
@@ -161,32 +250,25 @@ border-color:transparent;
 }
 
 }
-
 /* Corazones */
 
 .corazon{
-
-position:absolute;
-color:#ff4d88;
-
-animation:subir 8s linear forwards;
-
+    position:fixed;
+    color:#ff4d88;
+    animation:subir 8s linear forwards;
+    pointer-events:none;
 }
 
 @keyframes subir{
 
 from{
-
 transform:translateY(110vh) scale(.7);
 opacity:1;
-
 }
 
 to{
-
-transform:translateY(-15vh) scale(1.4);
+transform:translateY(-20vh) scale(1.5);
 opacity:0;
-
 }
 
 }
@@ -194,74 +276,59 @@ opacity:0;
 /* Rosas */
 
 .rosa{
-
-position:absolute;
-
-animation:caerRosa 9s linear forwards;
-
+    position:fixed;
+    pointer-events:none;
+    animation:caerRosa 10s linear forwards;
 }
 
 @keyframes caerRosa{
 
 from{
-
 transform:translateY(-60px) rotate(0deg);
 opacity:1;
-
 }
 
 to{
-
 transform:translateY(110vh) rotate(360deg);
 opacity:0;
-
 }
 
 }
 
-/* Estrella fugaz */
+/* Estrellas fugaces */
 
 .estrella{
-
-position:absolute;
-width:3px;
-height:130px;
-
-background:linear-gradient(white,transparent);
-
-transform:rotate(45deg);
-
-animation:caer 2s linear forwards;
-
+    position:fixed;
+    width:3px;
+    height:130px;
+    background:linear-gradient(white,transparent);
+    transform:rotate(45deg);
+    animation:caer 2s linear forwards;
 }
 
 @keyframes caer{
 
 from{
-
 transform:translate(-200px,-200px) rotate(45deg);
-
 opacity:1;
-
 }
 
 to{
-
 transform:translate(120vw,120vh) rotate(45deg);
-
 opacity:0;
-
 }
 
 }
 
-/* Botón música */
+/* Botón */
 
 button{
 
-margin-top:25px;
+display:block;
 
-padding:12px 30px;
+margin:40px auto 0;
+
+padding:14px 35px;
 
 border:none;
 
@@ -277,13 +344,15 @@ cursor:pointer;
 
 transition:.3s;
 
+box-shadow:0 0 20px hotpink;
+
 }
 
 button:hover{
 
-transform:scale(1.08);
+background:#ff4da6;
 
-background:#ff3ca8;
+transform:scale(1.08);
 
 }
 
@@ -300,10 +369,12 @@ background:#ff3ca8;
 <h1 class="titulo">👑 Para la Reina de Mi Vida 💖</h1>
 
 <h3 class="subtitulo">
-Con todo mi amor, para la mujer más hermosa del universo ❤️
+Con todo mi amor, para la mujer que cambió mi vida para siempre ❤️
 </h3>
 
-<div style="font-size:90px;">💖👑💖</div>
+<div style="text-align:center;font-size:90px;">
+💖👑💖
+</div>
 
 <br>
 
@@ -322,15 +393,15 @@ Iluminas mis días como las estrellas iluminan el cielo ✨. Tu sonrisa llena mi
 
 <br><br>
 
-Tus besos 💋💫😍 son mi refugio favorito. En cada uno encuentro amor, tranquilidad y la certeza de que quiero compartir toda mi vida contigo. Cada vez que pienso en ti, mi corazón late más fuerte porque eres la mujer que siempre soñé.
+Tus besos 💋💫😍 son mi refugio favorito. En cada uno encuentro amor, tranquilidad y la certeza de que quiero compartir toda mi vida contigo.
 
 <br><br>
 
-Gracias por apoyarme, por creer en mí, por acompañarme en cada momento y por regalarme tantos recuerdos hermosos. Eres la razón de muchas de mis sonrisas y el motivo por el que cada día quiero ser una mejor persona.
+Cada vez que pienso en ti, mi corazón late más fuerte porque eres la mujer con la que siempre soñé. Gracias por apoyarme, creer en mí y regalarme tantos momentos inolvidables.
 
 <br><br>
 
-No importa lo que pase, siempre voy a cuidar de ti, respetarte, apoyarte y hacer todo lo posible para verte feliz.
+No importa lo que pase, siempre estaré a tu lado para cuidarte, protegerte y hacerte sonreír.
 
 <br><br>
 
@@ -338,23 +409,17 @@ No importa lo que pase, siempre voy a cuidar de ti, respetarte, apoyarte y hacer
 
 <br><br>
 
-❤️♾️
-
-<b>
-
-Te amo hoy...
-
-Te amaré mañana...
-
-Y te amaré por toda la eternidad.
-
-</b>
-
-💖
+💖 Te amo hoy...
+<br>
+💖 Te amaré mañana...
+<br>
+💖 Y te amaré por toda la eternidad... ❤️♾️
 
 </div>
 
-<button onclick="musica.play()">🎵 Reproducir nuestra canción</button>
+<button onclick="musica.play()">
+🎵 Reproducir nuestra canción
+</button>
 
 </div>
 
@@ -371,70 +436,136 @@ const musica=document.getElementById("musica");
 sobre.onclick=()=>{
 
 sobre.style.display="none";
-
 contenido.style.display="block";
 
-}
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
 
-/* Corazones */
+}; 
+
+    /* Corazones flotando */
 
 setInterval(()=>{
 
-let c=document.createElement("div");
+    const c=document.createElement("div");
 
-c.className="corazon";
+    c.className="corazon";
 
-c.innerHTML="❤️";
+    c.innerHTML="❤️";
 
-c.style.left=Math.random()*100+"vw";
+    c.style.left=Math.random()*100+"vw";
 
-c.style.fontSize=(20+Math.random()*35)+"px";
+    c.style.fontSize=(20+Math.random()*35)+"px";
 
-document.body.appendChild(c);
+    document.body.appendChild(c);
 
-setTimeout(()=>c.remove(),8000);
+    setTimeout(()=>{
+        c.remove();
+    },8000);
 
 },700);
 
-/* Rosas */
+
+/* Rosas cayendo */
 
 setInterval(()=>{
 
-let r=document.createElement("div");
+    const r=document.createElement("div");
 
-r.className="rosa";
+    r.className="rosa";
 
-r.innerHTML="🌹";
+    r.innerHTML="🌹";
 
-r.style.left=Math.random()*100+"vw";
+    r.style.left=Math.random()*100+"vw";
 
-r.style.fontSize=(20+Math.random()*20)+"px";
+    r.style.fontSize=(20+Math.random()*20)+"px";
 
-document.body.appendChild(r);
+    document.body.appendChild(r);
 
-setTimeout(()=>r.remove(),9000);
+    setTimeout(()=>{
+        r.remove();
+    },10000);
 
 },1200);
 
-/* Estrellas */
+
+/* Estrellas fugaces */
 
 setInterval(()=>{
 
-let s=document.createElement("div");
+    const s=document.createElement("div");
 
-s.className="estrella";
+    s.className="estrella";
 
-s.style.left=Math.random()*100+"vw";
+    s.style.left=Math.random()*100+"vw";
 
-s.style.top="0";
+    s.style.top="0px";
 
-document.body.appendChild(s);
+    document.body.appendChild(s);
 
-setTimeout(()=>s.remove(),2000);
+    setTimeout(()=>{
+        s.remove();
+    },2000);
 
 },2500);
 
+
+/* Destellos */
+
+setInterval(()=>{
+
+    const brillo=document.createElement("div");
+
+    brillo.innerHTML="✨";
+
+    brillo.style.position="fixed";
+
+    brillo.style.left=Math.random()*100+"vw";
+
+    brillo.style.top=Math.random()*100+"vh";
+
+    brillo.style.fontSize=(10+Math.random()*20)+"px";
+
+    brillo.style.opacity="0.8";
+
+    brillo.style.pointerEvents="none";
+
+    brillo.style.animation="fade 3s linear";
+
+    document.body.appendChild(brillo);
+
+    setTimeout(()=>{
+        brillo.remove();
+    },3000);
+
+},500);
+
 </script>
+
+<style>
+
+@keyframes fade{
+
+0%{
+opacity:0;
+transform:scale(.3);
+}
+
+50%{
+opacity:1;
+transform:scale(1.3);
+}
+
+100%{
+opacity:0;
+transform:scale(.3);
+}
+
+}
+
+</style>
 
 </body>
 </html>
