@@ -417,15 +417,107 @@ No importa lo que pase, siempre estaré a tu lado para cuidarte, protegerte y ha
 
 </div>
 
-<button onclick="musica.play()">
-🎵 Reproducir nuestra canción
-</button>
+<button id="btnMusica" style="display:none;"></button>
 
 </div>
 
-<audio id="musica" loop>
+<audio id="musica" autoplay loop>
     <source src="06. Rauw Alejandro - Aquel Nap ZzZz.mp3" type="audio/mpeg">
+    Tu navegador no soporta el audio.
 </audio>
+
+<script>
+
+const sobre = document.getElementById("sobre");
+const contenido = document.getElementById("contenido");
+const musica = document.getElementById("musica");
+
+sobre.onclick = () => {
+
+    // Ocultar el sobre
+    sobre.style.display = "none";
+
+    // Mostrar la carta
+    contenido.style.display = "block";
+
+    // Reproducir la música automáticamente
+    musica.play().catch(error=>{
+        console.log("El navegador bloqueó la reproducción automática:", error);
+    });
+
+    // Ir al inicio de la carta
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+};
+
+/* Corazones */
+
+setInterval(()=>{
+
+    let c=document.createElement("div");
+
+    c.className="corazon";
+
+    c.innerHTML="❤️";
+
+    c.style.left=Math.random()*100+"vw";
+
+    c.style.fontSize=(20+Math.random()*35)+"px";
+
+    document.body.appendChild(c);
+
+    setTimeout(()=>{
+        c.remove();
+    },8000);
+
+},700);
+
+/* Rosas */
+
+setInterval(()=>{
+
+    let r=document.createElement("div");
+
+    r.className="rosa";
+
+    r.innerHTML="🌹";
+
+    r.style.left=Math.random()*100+"vw";
+
+    r.style.fontSize=(20+Math.random()*20)+"px";
+
+    document.body.appendChild(r);
+
+    setTimeout(()=>{
+        r.remove();
+    },9000);
+
+},1200);
+
+/* Estrellas */
+
+setInterval(()=>{
+
+    let s=document.createElement("div");
+
+    s.className="estrella";
+
+    s.style.left=Math.random()*100+"vw";
+
+    s.style.top="0";
+
+    document.body.appendChild(s);
+
+    setTimeout(()=>{
+        s.remove();
+    },2000);
+
+},2500);
+
+</script>
 
 <script>
 
