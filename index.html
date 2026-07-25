@@ -2,126 +2,293 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Para Candy ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💌 Para la Reina de Mi Vida 👑💖</title>
 
 <style>
-body{
+
+*{
     margin:0;
-    height:100vh;
-    background: radial-gradient(circle at bottom, #1a0033, #000814);
-    overflow:hidden;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
     display:flex;
     justify-content:center;
     align-items:center;
-    font-family: 'Courier New', monospace;
+    min-height:100vh;
+    overflow:hidden;
+    font-family:'Segoe UI',sans-serif;
+    background:radial-gradient(circle at bottom,#1d0036,#000814,#000);
     color:white;
 }
 
-/* Estrellas de fondo */
+/* Fondo */
 body::before{
     content:"";
     position:absolute;
-    width:100%;
-    height:100%;
+    inset:0;
     background:url("https://www.transparenttextures.com/patterns/stardust.png");
-    opacity:0.4;
+    opacity:.45;
 }
 
 /* Sobre */
+
 #sobre{
-    font-size:90px;
+    font-size:120px;
     cursor:pointer;
-    transition:0.4s;
-    z-index:2;
+    animation:latido 2s infinite;
+    transition:.4s;
+    z-index:5;
 }
 
 #sobre:hover{
     transform:scale(1.2);
 }
 
-/* Contenido */
+@keyframes latido{
+    50%{
+        transform:scale(1.08);
+    }
+}
+
+/* Carta */
+
 #contenido{
     display:none;
+    position:relative;
+    width:90%;
+    max-width:900px;
+    padding:40px;
+    border-radius:25px;
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,.15);
+    box-shadow:0 0 40px rgba(255,105,180,.5);
     text-align:center;
+    animation:aparecer 2s;
     z-index:2;
 }
 
-/* Árbol */
-.arbol{
-    font-size:120px;
-    animation: latido 2s infinite;
+@keyframes aparecer{
+    from{
+        opacity:0;
+        transform:scale(.7);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
 }
 
-@keyframes latido{
-    50%{ transform:scale(1.05); }
+.titulo{
+
+    font-size:42px;
+    color:gold;
+    margin-bottom:10px;
+
+    text-shadow:
+    0 0 15px gold,
+    0 0 30px hotpink;
+
+    animation:brillo 2s infinite alternate;
 }
 
-/* Nombre brillante */
+@keyframes brillo{
+
+from{
+text-shadow:0 0 10px gold;
+}
+
+to{
+text-shadow:0 0 20px gold,
+0 0 45px deeppink;
+}
+
+}
+
+.subtitulo{
+margin-bottom:25px;
+font-size:18px;
+color:#ddd;
+}
+
 .nombre{
-    font-size:28px;
-    font-weight:bold;
-    color:#ff66cc;
-    text-shadow:0 0 10px #ff66cc, 0 0 20px #ff1493;
+
+font-size:34px;
+font-weight:bold;
+color:#ff6fcf;
+
+text-shadow:
+0 0 10px #ff66cc,
+0 0 25px deeppink,
+0 0 50px deeppink;
+
 }
 
-/* Texto */
 .texto{
-    margin-top:20px;
-    max-width:600px;
-    font-size:20px;
-    overflow:hidden;
-    border-right:2px solid white;
-    animation: escribir 6s steps(120) forwards, cursor .6s infinite;
+
+font-size:21px;
+line-height:1.8;
+
+overflow:hidden;
+
+border-right:3px solid white;
+
+animation:
+escribir 16s steps(450) forwards,
+cursor .7s infinite;
+
 }
 
 @keyframes escribir{
-    from{ clip-path: inset(0 100% 0 0); }
-    to{ clip-path: inset(0 0 0 0); }
+
+from{
+clip-path:inset(0 100% 0 0);
+}
+
+to{
+clip-path:inset(0 0 0 0);
+}
+
 }
 
 @keyframes cursor{
-    50%{ border-color:transparent; }
+
+50%{
+border-color:transparent;
 }
 
-/* Corazones flotando */
+}
+
+/* Corazones */
+
 .corazon{
-    position:absolute;
-    color:#ff4d88;
-    animation: flotar 7s linear infinite;
+
+position:absolute;
+color:#ff4d88;
+
+animation:subir 8s linear forwards;
+
 }
 
-@keyframes flotar{
-    from{
-        transform: translateY(100vh) scale(0.8);
-        opacity:1;
-    }
-    to{
-        transform: translateY(-10vh) scale(1.2);
-        opacity:0;
-    }
+@keyframes subir{
+
+from{
+
+transform:translateY(110vh) scale(.7);
+opacity:1;
+
 }
 
-/* Estrellas fugaces */
+to{
+
+transform:translateY(-15vh) scale(1.4);
+opacity:0;
+
+}
+
+}
+
+/* Rosas */
+
+.rosa{
+
+position:absolute;
+
+animation:caerRosa 9s linear forwards;
+
+}
+
+@keyframes caerRosa{
+
+from{
+
+transform:translateY(-60px) rotate(0deg);
+opacity:1;
+
+}
+
+to{
+
+transform:translateY(110vh) rotate(360deg);
+opacity:0;
+
+}
+
+}
+
+/* Estrella fugaz */
+
 .estrella{
-    position:absolute;
-    width:3px;
-    height:120px;
-    background:linear-gradient(white, transparent);
-    transform:rotate(45deg);
-    animation: caer 2s linear forwards;
+
+position:absolute;
+width:3px;
+height:130px;
+
+background:linear-gradient(white,transparent);
+
+transform:rotate(45deg);
+
+animation:caer 2s linear forwards;
+
 }
 
 @keyframes caer{
-    from{
-        transform:translate(-200px,-200px) rotate(45deg);
-        opacity:1;
-    }
-    to{
-        transform:translate(100vw,100vh) rotate(45deg);
-        opacity:0;
-    }
+
+from{
+
+transform:translate(-200px,-200px) rotate(45deg);
+
+opacity:1;
+
 }
+
+to{
+
+transform:translate(120vw,120vh) rotate(45deg);
+
+opacity:0;
+
+}
+
+}
+
+/* Botón música */
+
+button{
+
+margin-top:25px;
+
+padding:12px 30px;
+
+border:none;
+
+border-radius:30px;
+
+background:#ff1493;
+
+color:white;
+
+font-size:18px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+button:hover{
+
+transform:scale(1.08);
+
+background:#ff3ca8;
+
+}
+
 </style>
+
 </head>
 
 <body>
@@ -129,44 +296,144 @@ body::before{
 <div id="sobre">💌</div>
 
 <div id="contenido">
-    <div class="arbol">🌳❤️</div>
-    <div class="texto">
-        Gracias <span class="nombre">Candy</span>,  
-        eres la mejor desde que llegaste a mi vida.  
-        Iluminas mis días como las estrellas iluminan el cielo ✨  
-        y mi corazón late más fuerte cada vez que pienso en ti ❤️
-    </div>
+
+<h1 class="titulo">👑 Para la Reina de Mi Vida 💖</h1>
+
+<h3 class="subtitulo">
+Con todo mi amor, para la mujer más hermosa del universo ❤️
+</h3>
+
+<div style="font-size:90px;">💖👑💖</div>
+
+<br>
+
+<div class="texto">
+
+Gracias por existir,
+<span class="nombre">mi reina</span>. 👑💖
+
+<br><br>
+
+Desde el momento en que llegaste a mi vida, todo cambió para mejor. Contigo descubrí que el verdadero amor sí existe y que la felicidad puede encontrarse en una sola persona.
+
+<br><br>
+
+Iluminas mis días como las estrellas iluminan el cielo ✨. Tu sonrisa llena mi corazón de alegría, tu mirada me transmite paz y tus abrazos son el lugar donde siempre quiero estar.
+
+<br><br>
+
+Tus besos 💋💫😍 son mi refugio favorito. En cada uno encuentro amor, tranquilidad y la certeza de que quiero compartir toda mi vida contigo. Cada vez que pienso en ti, mi corazón late más fuerte porque eres la mujer que siempre soñé.
+
+<br><br>
+
+Gracias por apoyarme, por creer en mí, por acompañarme en cada momento y por regalarme tantos recuerdos hermosos. Eres la razón de muchas de mis sonrisas y el motivo por el que cada día quiero ser una mejor persona.
+
+<br><br>
+
+No importa lo que pase, siempre voy a cuidar de ti, respetarte, apoyarte y hacer todo lo posible para verte feliz.
+
+<br><br>
+
+🌹 <b>Eres la reina de mi vida, la dueña de mi corazón, mi mayor alegría, mi sueño hecho realidad y el amor más hermoso que Dios puso en mi camino.</b> 👑❤️
+
+<br><br>
+
+❤️♾️
+
+<b>
+
+Te amo hoy...
+
+Te amaré mañana...
+
+Y te amaré por toda la eternidad.
+
+</b>
+
+💖
+
 </div>
 
-<script>
-const sobre = document.getElementById("sobre");
-const contenido = document.getElementById("contenido");
+<button onclick="musica.play()">🎵 Reproducir nuestra canción</button>
 
-sobre.addEventListener("click", () => {
-    sobre.style.display = "none";
-    contenido.style.display = "block";
-});
+</div>
+
+<audio id="musica" loop>
+<source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+const sobre=document.getElementById("sobre");
+const contenido=document.getElementById("contenido");
+const musica=document.getElementById("musica");
+
+sobre.onclick=()=>{
+
+sobre.style.display="none";
+
+contenido.style.display="block";
+
+}
 
 /* Corazones */
-setInterval(() => {
-    const heart = document.createElement("div");
-    heart.className = "corazon";
-    heart.innerHTML = "❤️";
-    heart.style.left = Math.random()*100 + "vw";
-    heart.style.fontSize = (20 + Math.random()*40) + "px";
-    document.body.appendChild(heart);
-    setTimeout(()=> heart.remove(), 7000);
-}, 900);
 
-/* Estrellas fugaces */
-setInterval(() => {
-    const star = document.createElement("div");
-    star.className = "estrella";
-    star.style.left = Math.random()*100 + "vw";
-    star.style.top = "0px";
-    document.body.appendChild(star);
-    setTimeout(()=> star.remove(), 2000);
-}, 3000);
+setInterval(()=>{
+
+let c=document.createElement("div");
+
+c.className="corazon";
+
+c.innerHTML="❤️";
+
+c.style.left=Math.random()*100+"vw";
+
+c.style.fontSize=(20+Math.random()*35)+"px";
+
+document.body.appendChild(c);
+
+setTimeout(()=>c.remove(),8000);
+
+},700);
+
+/* Rosas */
+
+setInterval(()=>{
+
+let r=document.createElement("div");
+
+r.className="rosa";
+
+r.innerHTML="🌹";
+
+r.style.left=Math.random()*100+"vw";
+
+r.style.fontSize=(20+Math.random()*20)+"px";
+
+document.body.appendChild(r);
+
+setTimeout(()=>r.remove(),9000);
+
+},1200);
+
+/* Estrellas */
+
+setInterval(()=>{
+
+let s=document.createElement("div");
+
+s.className="estrella";
+
+s.style.left=Math.random()*100+"vw";
+
+s.style.top="0";
+
+document.body.appendChild(s);
+
+setTimeout(()=>s.remove(),2000);
+
+},2500);
+
 </script>
 
 </body>
